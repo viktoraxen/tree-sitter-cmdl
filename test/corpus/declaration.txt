@@ -1,0 +1,65 @@
+==================
+Single declaration
+==================
+
+signal a
+
+---
+
+(source_file
+  (statement
+    (declaration
+      (identifiers
+        (identifier)))))
+
+==================
+Double declaration
+==================
+
+signal a, b
+
+---
+
+(source_file
+  (statement
+    (declaration
+      (identifiers
+        (identifier)
+        (identifier)))))
+
+==================
+Name containing all symbols
+==================
+
+signal Asdf_2fuoihvsni9p32
+
+---
+
+(source_file
+  (statement
+    (declaration
+      (identifiers
+        (identifier)))))
+
+==================
+Many declarations
+==================
+
+signal Asdf_2fuoihvsni9p32, sldfkjdksjf23lr, fd23r32, fdskfj, fdsf, f322fdsf,
+kdjlfs_, ___dlfkjsf, wfdksjfl
+
+---
+
+(source_file
+  (statement
+    (declaration
+      (identifiers
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)))))

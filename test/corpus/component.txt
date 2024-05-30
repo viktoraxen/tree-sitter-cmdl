@@ -1,0 +1,79 @@
+=============
+Simple component
+=============
+
+component Xor(a, b) => x
+end
+
+---
+
+(source_file
+  (statement
+    (component
+      (identifier)
+      (atomics
+        (identifier)
+        (identifier))
+      (identifiers
+        (identifier)))))
+
+=============
+Nestled component
+=============
+
+component Xor(a, b) => x
+    component Nor(a, b, c) => x, y
+    end
+end
+
+---
+
+(source_file
+  (statement
+    (component
+      (identifier)
+      (atomics
+        (identifier)
+        (identifier))
+      (identifiers
+        (identifier))
+      (statement
+        (component
+          (identifier)
+          (atomics
+            (identifier)
+            (identifier)
+            (identifier))
+          (identifiers
+            (identifier)
+            (identifier)))))))
+
+=============
+Multiple components
+=============
+
+component Xor(a, b) => x
+end
+
+component Nor(a, b) => x
+end
+
+---
+
+(source_file
+  (statement
+    (component
+      (identifier)
+      (atomics
+        (identifier)
+        (identifier))
+      (identifiers
+        (identifier))))
+  (statement
+    (component
+      (identifier)
+      (atomics
+        (identifier)
+        (identifier))
+      (identifiers
+        (identifier)))))

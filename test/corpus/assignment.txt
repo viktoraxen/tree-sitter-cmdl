@@ -1,0 +1,87 @@
+==================
+Simple assignment
+==================
+
+a <= b
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier))
+      (atomics
+        (identifier)))))
+
+==================
+Multiple output assignment
+==================
+
+a, b, d <= c
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier)
+        (identifier)
+        (identifier))
+      (atomics
+        (identifier)))))
+
+==================
+Multiple input assignment
+==================
+
+a <= c, b, d
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier))
+      (atomics
+        (identifier)
+        (identifier)
+        (identifier)))))
+
+==================
+Number input assignment
+==================
+
+a <= 0
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier))
+      (atomics
+        (number)))))
+
+==================
+Multiple number input assignment
+==================
+
+a <= 0, 1, 2, 98, 123
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier))
+      (atomics
+        (number)
+        (number)
+        (number)
+        (number)
+        (number)))))

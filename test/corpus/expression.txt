@@ -1,0 +1,170 @@
+=============
+Unary expression
+=============
+
+a <= not b
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier))
+      (expression
+        (expression_not
+          (expression
+            (atomics
+              (identifier))))))))
+
+=============
+Binary expression
+=============
+
+a <= b and c
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier))
+      (expression
+        (expression_and
+          (expression
+            (atomics
+              (identifier)))
+          (expression
+            (atomics
+              (identifier))))))))
+
+==============
+Left hand precedence
+==============
+
+a <= 0 and c and d
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier))
+      (expression
+        (expression_and
+          (expression
+            (expression_and
+              (expression
+                (atomics
+                  (number)))
+              (expression
+                (atomics
+                  (identifier)))))
+          (expression
+            (atomics
+              (identifier))))))))
+
+==============
+Parentheses precedence
+==============
+
+a <= 0 and (c and d)
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier))
+      (expression
+        (expression_and
+          (expression
+            (atomics
+              (number)))
+          (expression
+            (expression
+              (expression_and
+                (expression
+                  (atomics
+                    (identifier)))
+                (expression
+                  (atomics
+                    (identifier)))))))))))
+
+=============
+Expression precedence
+=============
+
+a <= not a and b or c
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier))
+      (expression
+        (expression_or
+          (expression
+            (expression_and
+              (expression
+                (expression_not
+                  (expression
+                    (atomics
+                      (identifier)))))
+                (expression
+                  (atomics
+                    (identifier)))))
+            (expression
+              (atomics
+                 (identifier))))))))
+
+
+==============
+Component
+==============
+
+a <= Xor(d, g)
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier))
+      (expression
+        (expression_component
+          (identifier)
+          (atomics
+            (identifier)
+            (identifier)))))))
+
+==============
+Component in expression
+==============
+
+a <= Xor(d, g) and b
+
+---
+
+(source_file
+  (statement
+    (assignment
+      (identifiers
+        (identifier))
+      (expression
+        (expression_and
+          (expression
+            (expression_component
+              (identifier)
+              (atomics
+                (identifier)
+                (identifier))))
+          (expression
+            (atomics
+              (identifier))))))))
