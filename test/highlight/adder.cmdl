@@ -1,0 +1,29 @@
+// Syntax test
+
+signal cout, u, v, w, x
+// <- keyword
+
+cout, u, v, w, x <= Adder(0, 1, 0, 0,
+                          1, 1, 1, 1)
+
+component Adder(a, b, c, d,
+                e, f, g, h)
+                => cout, u, v, w, x
+    signal ca, cb, cc
+
+    u, cout <= FullAdder(e, a, cc)
+    v, cc   <= FullAdder(f, b, cb)
+    w, cb   <= FullAdder(g, c, ca)
+    x, ca   <= FullAdder(h, d, 0)
+
+    component FullAdder(a, b, cin) => s, cout
+        signal z <= Xor(a, b)
+
+        s <= Xor(z, cin)
+        cout <= (z and cin) or (a and b)
+    end
+end
+
+component Xor(a, b) => x
+    x <= a and not b or not a and b
+end

@@ -6,18 +6,65 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_statements"
+          "name": "_source_block"
         },
         {
           "type": "BLANK"
         }
       ]
     },
-    "_statements": {
+    "_source_block": {
       "type": "REPEAT1",
       "content": {
-        "type": "SYMBOL",
-        "name": "_statement"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_statements"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_comments"
+          }
+        ]
+      }
+    },
+    "_comments": {
+      "type": "PREC",
+      "value": -2,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "SYMBOL",
+          "name": "comment"
+        }
+      }
+    },
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "#"
+          },
+          {
+            "type": "PATTERN",
+            "value": ".*"
+          }
+        ]
+      }
+    },
+    "_statements": {
+      "type": "PREC",
+      "value": -1,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "SYMBOL",
+          "name": "_statement"
+        }
       }
     },
     "_statement": {
@@ -112,7 +159,7 @@
     },
     "component_body": {
       "type": "SYMBOL",
-      "name": "_statements"
+      "name": "_source_block"
     },
     "declaration": {
       "type": "SEQ",

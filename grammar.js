@@ -2,9 +2,17 @@ module.exports = grammar({
     name: 'CMDL',
 
     rules: {
-        source_file: $ => optional($._statements),
+        source_file: $ => optional($._source_block),
 
-        _statements: $ => repeat1($._statement),
+        _source_block: $ => repeat1(choice(
+            $._statements,
+            $._comments)),
+
+        _comments: $ => prec(-2, repeat1($.comment)),
+
+        comment: _ => token(seq('#', /.*/)),
+
+        _statements: $ => prec(-1, repeat1($._statement)),
 
         _statement: $ => choice(
             $.declaration,
@@ -22,7 +30,7 @@ module.exports = grammar({
 
         component_inputs:  $ => $._identifiers,
         component_outputs: $ => $._identifiers,
-        component_body:    $ => $._statements,
+        component_body:    $ => $._source_block,
 
         /*
          * Declarations
@@ -123,9 +131,9 @@ module.exports = grammar({
 
         _identifiers: $ => commaSep1($.identifier),
 
-        identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
+        identifier: _ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
-        number: $ => /[0-9]+/
+        number: _ => /[0-9]+/
     }
 });
 

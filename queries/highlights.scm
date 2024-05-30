@@ -18,6 +18,8 @@
 (expression_component name:   (identifier) @type)
 (expression_component inputs: (expression_component_input_list (identifier) @variable))
 
-(component name:    (identifier) @type.definition)
-(component inputs:  (component_inputs (identifier) @variable.parameter))
-(component outputs: (component_outputs (identifier) @variable.parameter))
+(component         (identifier) @type.definition)
+(component_inputs  (identifier) @variable.parameter)
+(component_outputs (identifier) @variable.parameter)
+
+(comment) @comment

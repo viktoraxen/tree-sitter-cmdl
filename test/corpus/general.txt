@@ -1,0 +1,75 @@
+=============
+Empty file
+=============
+
+---
+
+(source_file)
+
+=============
+Comment
+=============
+
+# Comment string 1234.,<>=!"#¤%&/()?`´^¨*'-_+§½¼{[]}@£$€
+
+---
+
+(source_file
+  (comment))
+
+=============
+Comment EOL
+=============
+
+signal a # Comment string 1234.,<>=!"#¤%&/()?`´^¨*'-_+§½¼{[]}@£$€
+
+---
+
+(source_file
+  (declaration
+    (identifier))
+  (comment))
+
+=============
+Comment in component
+=============
+
+component Xor(a,b) => z
+    # Comment string
+end
+
+---
+
+(source_file
+  (component
+    (identifier)
+    (component_inputs
+      (identifier)
+      (identifier))
+    (component_outputs
+      (identifier))
+    (component_body
+      (comment))))
+
+=============
+Comment in component EOL
+=============
+
+component Xor(a,b) => z
+    signal a # Comment string
+end
+
+---
+
+(source_file
+  (component
+    (identifier)
+    (component_inputs
+      (identifier)
+      (identifier))
+    (component_outputs
+      (identifier))
+    (component_body
+      (declaration
+        (identifier))
+      (comment))))

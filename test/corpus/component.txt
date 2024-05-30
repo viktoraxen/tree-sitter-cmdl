@@ -47,6 +47,47 @@ end
             (identifier))))))
 
 =============
+Nestled components with statements
+=============
+
+component Xor(a, b) => x
+    x <= a and b
+    component Nor(a, b, c) => x, y
+        signal z <= y
+    end
+end
+
+---
+
+(source_file
+    (component
+      (identifier)
+      (component_inputs
+        (identifier)
+        (identifier))
+      (component_outputs
+        (identifier))
+      (component_body
+        (assignment
+          (identifier)
+          (expression_binary
+            (identifier)
+            (identifier)))
+        (component
+          (identifier)
+          (component_inputs
+            (identifier)
+            (identifier)
+            (identifier))
+          (component_outputs
+            (identifier)
+            (identifier))
+          (component_body
+            (declaration
+              (identifier)
+              (identifier)))))))
+
+=============
 Multiple components
 =============
 
