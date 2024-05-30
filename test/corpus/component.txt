@@ -8,14 +8,13 @@ end
 ---
 
 (source_file
-  (statement
-    (component
+  (component
+    (identifier)
+    (component_inputs
       (identifier)
-      (atomics
-        (identifier)
-        (identifier))
-      (identifiers
-        (identifier)))))
+      (identifier))
+    (component_outputs
+      (identifier))))
 
 =============
 Nestled component
@@ -29,24 +28,23 @@ end
 ---
 
 (source_file
-  (statement
     (component
       (identifier)
-      (atomics
+      (component_inputs
         (identifier)
         (identifier))
-      (identifiers
+      (component_outputs
         (identifier))
-      (statement
+      (component_body
         (component
           (identifier)
-          (atomics
+          (component_inputs
             (identifier)
             (identifier)
             (identifier))
-          (identifiers
+          (component_outputs
             (identifier)
-            (identifier)))))))
+            (identifier))))))
 
 =============
 Multiple components
@@ -61,19 +59,57 @@ end
 ---
 
 (source_file
-  (statement
-    (component
+  (component
+    (identifier)
+    (component_inputs
       (identifier)
-      (atomics
-        (identifier)
-        (identifier))
-      (identifiers
-        (identifier))))
-  (statement
-    (component
+      (identifier))
+    (component_outputs
+      (identifier)))
+  (component
+    (identifier)
+    (component_inputs
       (identifier)
-      (atomics
-        (identifier)
-        (identifier))
-      (identifiers
-        (identifier)))))
+      (identifier))
+    (component_outputs
+      (identifier))))
+
+===========
+Number as input
+:error
+===========
+
+component(a, 1) => x
+end
+
+---
+
+===========
+Number as output
+:error
+===========
+
+component(a, b) => 4
+end
+
+---
+
+===========
+Empty input
+:error
+===========
+
+component() => x
+end
+
+---
+
+===========
+Empty output
+:error
+===========
+
+component(a, b) =>
+end
+
+---

@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-cmdl",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "tree-sitter parser for hardware description language CMDL",
   "main": "index.js",
   "types": "bindings/node",
@@ -37,8 +37,11 @@
   ],
   "tree-sitter": [
     {
-      "scope": "source.YOUR_LANGUAGE_NAME",
-      "injection-regex": "^YOUR_LANGUAGE_NAME$"
+      "scope": "source.cmdl",
+      "injection-regex": "^cmdl$",
+      "file-types": [
+        "cmdl"
+      ]
     }
   ]
 }

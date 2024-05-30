@@ -2,34 +2,96 @@
   {
     "type": "assignment",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "atomics",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "identifiers",
-          "named": true
-        }
-      ]
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment_left_list",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "assignment_right_list",
+            "named": true
+          },
+          {
+            "type": "expression_binary",
+            "named": true
+          },
+          {
+            "type": "expression_component",
+            "named": true
+          },
+          {
+            "type": "expression_unary",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
-    "type": "atomics",
+    "type": "assignment_left_list",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "assignment_right_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression_binary",
+          "named": true
+        },
+        {
+          "type": "expression_component",
+          "named": true
+        },
+        {
+          "type": "expression_unary",
+          "named": true
+        },
         {
           "type": "identifier",
           "named": true
@@ -45,12 +107,22 @@
     "type": "component",
     "named": true,
     "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "component_body",
+            "named": true
+          }
+        ]
+      },
       "inputs": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "atomics",
+            "type": "component_inputs",
             "named": true
           }
         ]
@@ -70,18 +142,61 @@
         "required": true,
         "types": [
           {
-            "type": "identifiers",
+            "type": "component_outputs",
             "named": true
           }
         ]
       }
-    },
+    }
+  },
+  {
+    "type": "component_body",
+    "named": true,
+    "fields": {},
     "children": {
       "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "statement",
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "component",
+          "named": true
+        },
+        {
+          "type": "declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "component_inputs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "component_outputs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -90,20 +205,63 @@
   {
     "type": "declaration",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifiers",
-          "named": true
-        }
-      ]
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "declaration_left_list",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "declaration_right_list",
+            "named": true
+          },
+          {
+            "type": "expression_binary",
+            "named": true
+          },
+          {
+            "type": "expression_component",
+            "named": true
+          },
+          {
+            "type": "expression_unary",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
-    "type": "definition",
+    "type": "declaration_left_list",
     "named": true,
     "fields": {},
     "children": {
@@ -111,38 +269,22 @@
       "required": true,
       "types": [
         {
-          "type": "atomics",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "identifiers",
+          "type": "identifier",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "expression",
+    "type": "declaration_right_list",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "atomics",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "expression_and",
+          "type": "expression_binary",
           "named": true
         },
         {
@@ -150,36 +292,88 @@
           "named": true
         },
         {
-          "type": "expression_not",
+          "type": "expression_unary",
           "named": true
         },
         {
-          "type": "expression_or",
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "expression_and",
+    "type": "expression_binary",
     "named": true,
     "fields": {
-      "left_and": {
-        "multiple": false,
+      "left": {
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "expression",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "expression_binary",
+            "named": true
+          },
+          {
+            "type": "expression_component",
+            "named": true
+          },
+          {
+            "type": "expression_unary",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
             "named": true
           }
         ]
       },
-      "right_and": {
-        "multiple": false,
+      "right": {
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "expression",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "expression_binary",
+            "named": true
+          },
+          {
+            "type": "expression_component",
+            "named": true
+          },
+          {
+            "type": "expression_unary",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
             "named": true
           }
         ]
@@ -191,11 +385,39 @@
     "named": true,
     "fields": {
       "inputs": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "atomics",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "expression_binary",
+            "named": true
+          },
+          {
+            "type": "expression_component",
+            "named": true
+          },
+          {
+            "type": "expression_component_input_list",
+            "named": true
+          },
+          {
+            "type": "expression_unary",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
             "named": true
           }
         ]
@@ -213,49 +435,7 @@
     }
   },
   {
-    "type": "expression_not",
-    "named": true,
-    "fields": {
-      "not": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "expression_or",
-    "named": true,
-    "fields": {
-      "left_or": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
-      "right_or": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "identifiers",
+    "type": "expression_component_input_list",
     "named": true,
     "fields": {},
     "children": {
@@ -263,10 +443,66 @@
       "required": true,
       "types": [
         {
+          "type": "expression_binary",
+          "named": true
+        },
+        {
+          "type": "expression_component",
+          "named": true
+        },
+        {
+          "type": "expression_unary",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "expression_unary",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "expression_binary",
+            "named": true
+          },
+          {
+            "type": "expression_component",
+            "named": true
+          },
+          {
+            "type": "expression_unary",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -278,21 +514,6 @@
       "required": false,
       "types": [
         {
-          "type": "statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
           "type": "assignment",
           "named": true
         },
@@ -302,10 +523,6 @@
         },
         {
           "type": "declaration",
-          "named": true
-        },
-        {
-          "type": "definition",
           "named": true
         }
       ]

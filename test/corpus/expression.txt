@@ -7,15 +7,10 @@ a <= not b
 ---
 
 (source_file
-  (statement
-    (assignment
-      (identifiers
-        (identifier))
-      (expression
-        (expression_not
-          (expression
-            (atomics
-              (identifier))))))))
+  (assignment
+    (identifier)
+    (expression_unary
+      (identifier))))
 
 =============
 Binary expression
@@ -26,18 +21,11 @@ a <= b and c
 ---
 
 (source_file
-  (statement
-    (assignment
-      (identifiers
-        (identifier))
-      (expression
-        (expression_and
-          (expression
-            (atomics
-              (identifier)))
-          (expression
-            (atomics
-              (identifier))))))))
+  (assignment
+    (identifier)
+    (expression_binary
+      (identifier)
+      (identifier))))
 
 ==============
 Left hand precedence
@@ -48,23 +36,13 @@ a <= 0 and c and d
 ---
 
 (source_file
-  (statement
-    (assignment
-      (identifiers
+  (assignment
+    (identifier)
+    (expression_binary
+      (expression_binary
+        (number)
         (identifier))
-      (expression
-        (expression_and
-          (expression
-            (expression_and
-              (expression
-                (atomics
-                  (number)))
-              (expression
-                (atomics
-                  (identifier)))))
-          (expression
-            (atomics
-              (identifier))))))))
+      (identifier))))
 
 ==============
 Parentheses precedence
@@ -75,24 +53,13 @@ a <= 0 and (c and d)
 ---
 
 (source_file
-  (statement
-    (assignment
-      (identifiers
-        (identifier))
-      (expression
-        (expression_and
-          (expression
-            (atomics
-              (number)))
-          (expression
-            (expression
-              (expression_and
-                (expression
-                  (atomics
-                    (identifier)))
-                (expression
-                  (atomics
-                    (identifier)))))))))))
+  (assignment
+    (identifier)
+    (expression_binary
+      (number)
+      (expression_binary
+        (identifier)
+        (identifier)))))
 
 =============
 Expression precedence
@@ -103,25 +70,14 @@ a <= not a and b or c
 ---
 
 (source_file
-  (statement
-    (assignment
-      (identifiers
+  (assignment
+    (identifier)
+    (expression_binary
+      (expression_binary
+        (expression_unary
+          (identifier))
         (identifier))
-      (expression
-        (expression_or
-          (expression
-            (expression_and
-              (expression
-                (expression_not
-                  (expression
-                    (atomics
-                      (identifier)))))
-                (expression
-                  (atomics
-                    (identifier)))))
-            (expression
-              (atomics
-                 (identifier))))))))
+      (identifier))))
 
 
 ==============
@@ -133,16 +89,13 @@ a <= Xor(d, g)
 ---
 
 (source_file
-  (statement
-    (assignment
-      (identifiers
-        (identifier))
-      (expression
-        (expression_component
-          (identifier)
-          (atomics
-            (identifier)
-            (identifier)))))))
+  (assignment
+    (identifier)
+    (expression_component
+      (identifier)
+      (expression_component_input_list
+        (identifier)
+        (identifier)))))
 
 ==============
 Component in expression
@@ -153,18 +106,29 @@ a <= Xor(d, g) and b
 ---
 
 (source_file
-  (statement
-    (assignment
-      (identifiers
-        (identifier))
-      (expression
-        (expression_and
-          (expression
-            (expression_component
-              (identifier)
-              (atomics
-                (identifier)
-                (identifier))))
-          (expression
-            (atomics
-              (identifier))))))))
+  (assignment
+    (identifier)
+    (expression_binary
+      (expression_component
+        (identifier)
+        (expression_component_input_list
+          (identifier)
+          (identifier)))
+      (identifier))))
+
+==============
+Chained unary
+==============
+
+b <= not not not not a
+
+---
+
+(source_file
+  (assignment
+    (identifier)
+    (expression_unary
+      (expression_unary
+        (expression_unary
+          (expression_unary
+            (identifier)))))))

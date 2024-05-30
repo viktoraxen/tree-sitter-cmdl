@@ -7,10 +7,8 @@ signal a
 ---
 
 (source_file
-  (statement
-    (declaration
-      (identifiers
-        (identifier)))))
+  (declaration
+    (identifier)))
 
 ==================
 Double declaration
@@ -21,11 +19,10 @@ signal a, b
 ---
 
 (source_file
-  (statement
-    (declaration
-      (identifiers
-        (identifier)
-        (identifier)))))
+  (declaration
+    (declaration_left_list
+      (identifier)
+      (identifier))))
 
 ==================
 Name containing all symbols
@@ -36,10 +33,8 @@ signal Asdf_2fuoihvsni9p32
 ---
 
 (source_file
-  (statement
-    (declaration
-      (identifiers
-        (identifier)))))
+  (declaration
+    (identifier)))
 
 ==================
 Many declarations
@@ -51,15 +46,108 @@ kdjlfs_, ___dlfkjsf, wfdksjfl
 ---
 
 (source_file
-  (statement
-    (declaration
-      (identifiers
-        (identifier)
-        (identifier)
-        (identifier)
-        (identifier)
-        (identifier)
-        (identifier)
-        (identifier)
-        (identifier)
-        (identifier)))))
+  (declaration
+    (declaration_left_list
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier))))
+
+==================
+Simple declaration and assignment
+==================
+
+signal a <= b
+
+---
+
+(source_file
+  (declaration
+    (identifier)
+    (identifier)))
+
+==================
+Multiple output declaration and assignment
+==================
+
+signal a, b, d <= c
+
+---
+
+(source_file
+  (declaration
+    (declaration_left_list
+      (identifier)
+      (identifier)
+      (identifier))
+    (identifier)))
+
+==================
+Multiple input declaration
+==================
+
+signal a <= c, b, d
+
+---
+
+(source_file
+  (declaration
+    (identifier)
+    (declaration_right_list
+      (identifier)
+      (identifier)
+      (identifier))))
+
+==================
+Number input declaration
+==================
+
+signal a <= 0
+
+---
+
+(source_file
+  (declaration
+    (identifier)
+    (number)))
+
+==================
+Multiple number input declaration
+==================
+
+signal a <= 0, 1, 2, 98, 123
+
+---
+
+(source_file
+  (declaration
+    (identifier)
+    (declaration_right_list
+      (number)
+      (number)
+      (number)
+      (number)
+      (number))))
+
+==================
+Number in left list
+:error
+==================
+
+signal a, 1 <= c
+
+---
+
+==================
+Expression in left list
+:error
+==================
+
+signal a, b and c <= c
+
+---
