@@ -2,12 +2,25 @@
 
 This repository contains a working tree-sitter parser for the CMDL language, with syntax highlighting implemented.
 
+## Screeshots
+
+Following are som screenshots of the syntax highlighting using different colorschemes.
+
+### [TokyoDark](https://github.com/tiagovla/tokyodark.nvim) (flavor night)
+
+<img src="https://github.com/lyktstolpe/tree-sitter-cmdl/assets/37225272/9b3a06f5-5ccb-4206-b433-86824c7474c7" width = "500"/>
+
+### [OneDark](https://github.com/navarasu/onedark.nvim)
+
+<img src="https://github.com/lyktstolpe/tree-sitter-cmdl/assets/37225272/2da58718-9121-44bb-9ffc-f399defe3f6b" width = "500"/>
+
 ## Integrate into NeoVim using nvim-treesitter
 
 To integrate syntax highlighting with NeoVim using the pluging [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter), add the following to your ```init.lua```:
 
 ```lua
-vim.api.nvim_create_autocmd(
+vim.api.nvim_create_autocmd(![adder-tokyodark-night](https://github.com/lyktstolpe/tree-sitter-cmdl/assets/37225272/0b9d69ca-e02a-4334-9db6-25f5c2216e65)
+
     {
         "BufNewFile",
         "BufRead",
@@ -25,7 +38,8 @@ vim.api.nvim_create_autocmd(
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.cmdl = {
     install_info = {
-        url = "https://github.com/lyktstolpe/tree-sitter-cmdl",
+        url = "https://github.com/lyktstolpe/tree-sitter-cmdl",![adder-tokyodark-night](https://github.com/lyktstolpe/tree-sitter-cmdl/assets/37225272/3b139d18-a0c6-459b-98fb-d1e8515eba8d)
+
         files = { "src/parser.c" },
         branch = "main",
         generate_reqires_npm = false,
