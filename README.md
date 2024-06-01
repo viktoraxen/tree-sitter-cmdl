@@ -2,18 +2,6 @@
 
 This repository contains a working tree-sitter parser for the CMDL language, with syntax highlighting implemented.
 
-## Screenshots
-
-Following are screenshots of the syntax higlighting for a file implementing a four-bit adder in CMDL.
-
-### TokyoNight (night)
-
-![tokyonight-night](img/adder-tokyonight-night.png)
-
-### OneDark
-
-![onedark](img/adder-onedark.png)
-
 ## Integrate into NeoVim using nvim-treesitter
 
 To integrate syntax highlighting with NeoVim using the pluging [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter), add the following to your ```init.lua```:
