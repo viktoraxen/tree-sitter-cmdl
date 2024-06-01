@@ -16,7 +16,7 @@ Following are som screenshots of the syntax highlighting using different colorsc
 
 ## Integrate into NeoVim using nvim-treesitter
 
-To integrate syntax highlighting with NeoVim using the pluging [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter), add the following to your ```init.lua```:
+To integrate syntax highlighting with NeoVim using the plugin [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter), add the following to your ```init.lua```:
 
 ```lua
 vim.api.nvim_create_autocmd(![adder-tokyodark-night](https://github.com/lyktstolpe/tree-sitter-cmdl/assets/37225272/0b9d69ca-e02a-4334-9db6-25f5c2216e65)
