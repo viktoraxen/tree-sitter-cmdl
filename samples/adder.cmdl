@@ -21,10 +21,13 @@ component Adder(a, b, c, d,
 
         s <= Xor(z, cin)
         cout <= (z and cin) or (a and b)
+
+        # Helper component performing exclusive or operation
+        component Xor(a, b) => x
+            x <= a and not b or not a and b
+        end
     end
 end
 
-# Helper component performing exclusive or operation
-component Xor(a, b) => x
-    x <= a and not b or not a and b
-end
+
+
