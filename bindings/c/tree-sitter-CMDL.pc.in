@@ -2,10 +2,10 @@ prefix=@PREFIX@
 libdir=@LIBDIR@
 includedir=@INCLUDEDIR@
 
-Name: tree-sitter-CMDL
+Name: tree-sitter-cmdl
 Description: Cmdl grammar for tree-sitter
 URL: @URL@
 Version: @VERSION@
 Requires: @REQUIRES@
-Libs: -L${libdir} @ADDITIONAL_LIBS@ -ltree-sitter-CMDL
+Libs: -L${libdir} @ADDITIONAL_LIBS@ -ltree-sitter-cmdl
 Cflags: -I${includedir}
