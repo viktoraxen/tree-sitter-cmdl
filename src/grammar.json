@@ -1,5 +1,5 @@
 {
-  "name": "CMDL",
+  "name": "cmdl",
   "rules": {
     "source_file": {
       "type": "CHOICE",

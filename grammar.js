@@ -1,5 +1,5 @@
 module.exports = grammar({
-    name: 'CMDL',
+    name: 'cmdl',
 
     rules: {
         source_file: $ => optional($._source_block),
@@ -52,8 +52,8 @@ module.exports = grammar({
             $._expression,
             $.declaration_right_list),
 
-        declaration_left_list:  $ => prec(-1, commaSep1($.identifier)),
-        declaration_right_list: $ => prec(-1, commaSep1($._expression)),
+        declaration_left_list:  $ => prec(-1, seq($.identifier, repeat(seq(',', $.identifier)))),
+        declaration_right_list: $ => prec(-1, seq($._expression, repeat(seq(',', $._expression)))),
 
         /*
          * Assignments
@@ -73,15 +73,15 @@ module.exports = grammar({
             prec(0, $._expression),
             prec(1, $.assignment_right_list)),
 
-        assignment_left_list:  $ => prec(-1, commaSep1($.identifier)),
-        assignment_right_list: $ => prec(-1, commaSep1($._expression)),
+        assignment_left_list:  $ => prec(-1, seq($.identifier, repeat(seq(',', $.identifier)))),
+        assignment_right_list: $ => prec(-1, seq($._expression, repeat(seq(',', $._expression)))),
 
         /*
          * Expressions
          *
          */
 
-        _expressions: $ => commaSep1($._expression),
+        _expressions: $ => seq($._expression, repeat(seq(',', $._expression))),
 
         _expression: $ => choice(
             prec(0, $._expression_primary),
@@ -105,7 +105,7 @@ module.exports = grammar({
             prec(0, $._expression),
             prec(1, $.expression_component_input_list)),
 
-        expression_component_input_list: $ => prec(-1, commaSep1($._expression)),
+        expression_component_input_list: $ => prec(-1, seq($._expression, repeat(seq(',', $._expression)))),
 
         /**/
 
@@ -129,18 +129,10 @@ module.exports = grammar({
             $.identifier,
             $.number),
 
-        _identifiers: $ => commaSep1($.identifier),
+        _identifiers: $ => seq($.identifier, repeat(seq(',', $.identifier))),
 
         identifier: _ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
         number: _ => /[0-9]+/
     }
 });
-
-function commaSep1(rule) {
-    return seq(rule, repeat(seq(',', rule)))
-}
-
-function commaSep(rule) {
-    return optional(commaSep1(rule))
-}

@@ -1,7 +1,6 @@
 {
   "name": "tree-sitter-cmdl",
-  "version": "0.1.0",
-  "description": "tree-sitter parser for hardware description language CMDL",
+  "version": "1.0.0",
   "main": "index.js",
   "types": "bindings/node",
   "scripts": {
@@ -9,8 +8,9 @@
     "install": "node-gyp-build",
     "prebuildify": "prebuildify --napi --strip"
   },
-  "author": "Viktor Axén",
+  "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
     "node-addon-api": "^7.1.0",
     "node-gyp-build": "^4.8.0"
@@ -39,9 +39,8 @@
     {
       "scope": "source.cmdl",
       "injection-regex": "^cmdl$",
-      "file-types": [
-        "cmdl"
-      ]
+      "file-types": ["cmdl"],
+      "highlights": "queries/highlights.scm"
     }
   ]
 }
