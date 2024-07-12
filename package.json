@@ -38,8 +38,8 @@
   "tree-sitter": [
     {
       "scope": "source.cmdl",
-      "injection-regex": "^cmdl$",
-      "file-types": ["cmdl"],
+      "injection-regex": "^cmd$",
+      "file-types": ["cmdl", "cmd"],
       "highlights": "queries/highlights.scm"
     }
   ]

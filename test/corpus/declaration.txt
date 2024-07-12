@@ -11,6 +11,20 @@ signal a
     (identifier)))
 
 ==================
+Single declaration width
+==================
+
+signal a: 5
+
+---
+
+(source_file
+  (declaration
+    (declarator_subscript
+      (identifier)
+      (number))))
+
+==================
 Double declaration
 ==================
 
@@ -23,6 +37,40 @@ signal a, b
     (declaration_left_list
       (identifier)
       (identifier))))
+
+==================
+Double declaration one width
+==================
+
+signal a: 5, b
+
+---
+
+(source_file
+  (declaration
+    (declaration_left_list
+      (declarator_subscript
+        (identifier)
+        (number))
+      (identifier))))
+
+==================
+Double declaration both width
+==================
+
+signal a: 5, b: 6
+
+---
+
+(source_file
+  (declaration
+    (declaration_left_list
+      (declarator_subscript
+        (identifier)
+        (number))
+      (declarator_subscript
+        (identifier)
+        (number)))))
 
 ==================
 Name containing all symbols

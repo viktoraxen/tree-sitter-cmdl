@@ -1,0 +1,63 @@
+==================
+Index
+==================
+
+a <= b.5
+
+---
+
+(source_file
+  (assignment
+    (identifier)
+    (reference
+      (identifier)
+      (number))))
+
+==================
+Range
+==================
+
+a <= b.5:6
+
+---
+
+(source_file
+  (assignment
+    (identifier)
+    (reference
+      (identifier)
+      (range_closed
+        (number)
+        (number)))))
+
+==================
+Range open left
+==================
+
+a <= b.:6
+
+---
+
+(source_file
+  (assignment
+    (identifier)
+    (reference
+      (identifier)
+      (range_open_left
+        (number)))))
+
+==================
+Range open right
+==================
+
+a <= b.5:
+
+---
+
+(source_file
+  (assignment
+    (identifier)
+    (reference
+      (identifier)
+      (range_open_right
+        (number)))))

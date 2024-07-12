@@ -24,6 +24,8 @@ component Adder(a, b, c, d,
     end
 end
 
+v <= Adder.Fulladder(1, 0, 1)
+
 component Xor(a, b) => x
     x <= a and not b or not a and b
 end

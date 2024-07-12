@@ -117,6 +117,27 @@ a <= Xor(d, g) and b
       (identifier))))
 
 ==============
+Component in expression
+==============
+
+a <= Xor.Nor(d, g) and b
+
+---
+
+(source_file
+  (assignment
+    (identifier)
+    (expression_binary
+      (expression_component
+        (component_reference
+          (identifier)
+          (identifier))
+        (expression_component_input_list
+          (identifier)
+          (identifier)))
+      (identifier))))
+
+==============
 Chained unary
 ==============
 

@@ -11,11 +11,13 @@
 "(" @punctuation.bracket
 ")" @punctuation.bracket
 "," @punctuation.delimiter
+"." @punctuation.delimiter
+":" @punctuation.delimiter
 
 (number) @number
 (identifier) @variable
 
-(expression_component name:   (identifier) @type)
+(expression_component name:   (component_reference (identifier) @type))
 (expression_component inputs: (expression_component_input_list (identifier) @variable))
 
 (component         (identifier) @type.definition)

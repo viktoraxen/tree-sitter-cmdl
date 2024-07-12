@@ -4,6 +4,11 @@ module.exports = grammar({
     rules: {
         source_file: $ => optional($._source_block),
 
+        /*
+         * Code Block
+         *
+         */
+
         _source_block: $ => repeat1(choice(
             $._statements,
             $._comments)),
@@ -18,6 +23,11 @@ module.exports = grammar({
             $.declaration,
             $.assignment,
             $.component),
+
+        /*
+         * Component
+         *
+         */
 
         component: $ => seq(
             'component',
@@ -45,15 +55,19 @@ module.exports = grammar({
                 field('right', $._declaration_right)))),
 
         _declaration_left: $ => choice(
-            $.identifier,
+            $._declarator,
             $.declaration_left_list),
 
         _declaration_right: $ => choice(
             $._expression,
             $.declaration_right_list),
 
-        declaration_left_list:  $ => prec(-1, seq($.identifier, repeat(seq(',', $.identifier)))),
+        declaration_left_list:  $ => prec(-1, seq($._declarator, repeat(seq(',', $._declarator)))),
         declaration_right_list: $ => prec(-1, seq($._expression, repeat(seq(',', $._expression)))),
+
+        _declarator: $ => choice(
+            $.identifier,
+            $.declarator_subscript),
 
         /*
          * Assignments
@@ -90,16 +104,30 @@ module.exports = grammar({
             prec(3, $.expression_binary)),
 
         _expression_primary: $ => choice(
-            $._atomic,
+            $._signal_reference,
             seq('(', $._expression, ')')),
+
+        _signal_reference: $ => choice(
+            $._atomic,
+            $.reference),
+
+        reference: $ => seq(
+            $.identifier, '.',
+            $._subscript),
 
         /* Expression Component */
 
         expression_component: $ => seq(
-            field('name', $.identifier),
+            field('name', $._expression_component_reference),
             '(',
             field('inputs', $._expression_component_input),
             ')'),
+
+        _expression_component_reference: $ => choice(
+            prec(0, $.identifier),
+            prec(1, $.component_reference)),
+
+        component_reference: $ => prec(-1, seq($.identifier, repeat(seq('.', $.identifier)))),
 
         _expression_component_input: $ => choice(
             prec(0, $._expression),
@@ -119,6 +147,30 @@ module.exports = grammar({
                 prec(0, 'and'),
                 prec(1, 'or')),
             field('right', $._expression))),
+
+        /*
+         * Subscript
+         *
+         */
+
+        declarator_subscript: $ => seq(
+            $.identifier, ':',
+            field('width', $.number)),
+
+        _subscript: $ => choice(
+            $._index,
+            $._range),
+
+        _index: $ => seq($.number),
+
+        _range: $ => choice(
+            $.range_closed,
+            $.range_open_left,
+            $.range_open_right),
+
+        range_closed: $ => seq($.number, ':', $.number),
+        range_open_left: $ => seq(':', $.number),
+        range_open_right: $ => seq($.number, ':'),
 
         /*
          * Atomics
