@@ -16,7 +16,7 @@ Following are som screenshots of the syntax highlighting using different colorsc
 
 ## Integrate into NeoVim using nvim-treesitter
 
-To integrate syntax highlighting with NeoVim using the pluging [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter), add the following to your ```init.lua```:
+To integrate syntax highlighting with NeoVim using the plugin [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter), add the following to your ```init.lua```:
 
 ```lua
 vim.api.nvim_create_autocmd(![adder-tokyodark-night](https://github.com/lyktstolpe/tree-sitter-cmdl/assets/37225272/0b9d69ca-e02a-4334-9db6-25f5c2216e65)
@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd(![adder-tokyodark-night](https://github.com/lyktstol
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.cmdl = {
     install_info = {
-        url = "https://github.com/lyktstolpe/tree-sitter-cmdl",![adder-tokyodark-night](https://github.com/lyktstolpe/tree-sitter-cmdl/assets/37225272/3b139d18-a0c6-459b-98fb-d1e8515eba8d)
+        url = "https://github.com/lyktstolpe/tree-sitter-cmdl"
 
         files = { "src/parser.c" },
         branch = "main",
@@ -53,7 +53,7 @@ parser_config.cmdl = {
 You also need to tell nvim-treesitter where to find the highlight queries, since these files are not automatically fetched for custom languages. For this you need the following:
 
  * The directory ```queries/``` from this repository.
- * Tha path to your nvim install location, usually ```~/.local/nvim/```.
+ * The path to your nvim install location, usually ```~/.local/nvim/```.
 
 Run the command
 
