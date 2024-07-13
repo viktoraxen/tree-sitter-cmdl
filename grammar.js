@@ -6,7 +6,6 @@ module.exports = grammar({
 
         /*
          * Code Block
-         *
          */
 
         _source_block: $ => repeat1(choice(
@@ -26,7 +25,6 @@ module.exports = grammar({
 
         /*
          * Component
-         *
          */
 
         component: $ => seq(
@@ -38,13 +36,26 @@ module.exports = grammar({
                 field('body', $.component_body)),
             'end'),
 
-        component_inputs:  $ => $._identifiers,
-        component_outputs: $ => $._identifiers,
-        component_body:    $ => $._source_block,
+        component_inputs:  $ => choice(
+            $._component_input,
+            $._component_input_list),
+
+        component_outputs: $ => choice(
+            $._component_output,
+            $._component_output_list),
+
+        component_body:   $ => $._source_block,
+
+        _component_input_list: $ => prec(-1, seq($._component_input, repeat(seq(',', $._component_input)))),
+
+        _component_input: $ => $._definition,
+
+        _component_output_list: $ => prec(-1, seq($._component_output, repeat(seq(',', $._component_output)))),
+
+        _component_output: $ => $._definition,
 
         /*
          * Declarations
-         *
          */
 
         declaration: $ => seq(
@@ -65,13 +76,10 @@ module.exports = grammar({
         declaration_left_list:  $ => prec(-1, seq($._declarator, repeat(seq(',', $._declarator)))),
         declaration_right_list: $ => prec(-1, seq($._expression, repeat(seq(',', $._expression)))),
 
-        _declarator: $ => choice(
-            $.identifier,
-            $.declarator_subscript),
+        _declarator: $ => $._signal_definition,
 
         /*
          * Assignments
-         *
          */
 
         assignment: $ => seq(
@@ -80,19 +88,18 @@ module.exports = grammar({
             field('right', $._assignment_right)),
 
         _assignment_left: $ => choice(
-            prec(0, $.identifier),
+            prec(0, $._reference),
             prec(1, $.assignment_left_list)),
 
         _assignment_right: $ => choice(
             prec(0, $._expression),
             prec(1, $.assignment_right_list)),
 
-        assignment_left_list:  $ => prec(-1, seq($.identifier, repeat(seq(',', $.identifier)))),
+        assignment_left_list:  $ => prec(-1, seq($._reference, repeat(seq(',', $._reference)))),
         assignment_right_list: $ => prec(-1, seq($._expression, repeat(seq(',', $._expression)))),
 
         /*
          * Expressions
-         *
          */
 
         _expressions: $ => seq($._expression, repeat(seq(',', $._expression))),
@@ -100,20 +107,14 @@ module.exports = grammar({
         _expression: $ => choice(
             prec(0, $._expression_primary),
             prec(1, $.expression_component),
-            prec(2, $.expression_unary),
-            prec(3, $.expression_binary)),
+            prec(2, $.expression_subscript),
+            prec(3, $.expression_unary),
+            prec(4, $.expression_binary)),
 
         _expression_primary: $ => choice(
-            $._signal_reference,
+            $.identifier,
+            $._constant_definition,
             seq('(', $._expression, ')')),
-
-        _signal_reference: $ => choice(
-            $._atomic,
-            $.reference),
-
-        reference: $ => seq(
-            $.identifier, '.',
-            $._subscript),
 
         /* Expression Component */
 
@@ -127,7 +128,7 @@ module.exports = grammar({
             prec(0, $.identifier),
             prec(1, $.component_reference)),
 
-        component_reference: $ => prec(-1, seq($.identifier, repeat(seq('.', $.identifier)))),
+        component_reference: $ => prec(-1, seq($.identifier, repeat(seq('::', $.identifier)))),
 
         _expression_component_input: $ => choice(
             prec(0, $._expression),
@@ -136,6 +137,9 @@ module.exports = grammar({
         expression_component_input_list: $ => prec(-1, seq($._expression, repeat(seq(',', $._expression)))),
 
         /**/
+
+        expression_subscript: $ => prec.left(seq(
+            $._expression, '.', $._subscript)),
 
         expression_unary: $ => prec.left(seq(
             'not',
@@ -149,13 +153,40 @@ module.exports = grammar({
             field('right', $._expression))),
 
         /*
-         * Subscript
-         *
+         * Definition
          */
 
-        declarator_subscript: $ => seq(
-            $.identifier, ':',
+        _definition: $ => choice(
+            $._signal_definition,
+            $._constant_definition),
+
+        _signal_definition: $ => choice(
+            $.identifier,
+            $.signal_definition),
+
+        signal_definition: $ => seq(
+            field('name', $.identifier), ':',
             field('width', $.number)),
+
+        _constant_definition: $ => choice(
+            $.number,
+            $.constant),
+
+        constant: $ => seq(
+            field('value', $.number), ':',
+            field('width', $.number)),
+
+        /*
+         * Reference
+         */
+
+        _reference: $ => choice(
+            $.identifier,
+            $.reference),
+
+        reference: $ => seq(
+            field('signal', $.identifier), '.',
+            field('subscript', $._subscript)),
 
         _subscript: $ => choice(
             $._index,
@@ -168,9 +199,13 @@ module.exports = grammar({
             $.range_open_left,
             $.range_open_right),
 
-        range_closed: $ => seq($.number, ':', $.number),
-        range_open_left: $ => seq(':', $.number),
-        range_open_right: $ => seq($.number, ':'),
+        range_closed: $ => seq(
+            field('start', $.number), ':',
+            field('stop', $.number)),
+        range_open_left: $ => seq(
+            ':', field('stop', $.number)),
+        range_open_right: $ => seq(
+            field('start', $.number), ':'),
 
         /*
          * Atomics
@@ -179,7 +214,12 @@ module.exports = grammar({
 
         _atomic: $ => choice(
             $.identifier,
-            $.number),
+            $.number,
+            $.constant),
+
+        constant: $ => seq(
+            field('value', $.number), ':',
+            field('width', $.number)),
 
         _identifiers: $ => seq($.identifier, repeat(seq(',', $.identifier))),
 

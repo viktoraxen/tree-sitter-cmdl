@@ -9,7 +9,7 @@ a <= b.5
 (source_file
   (assignment
     (identifier)
-    (reference
+    (expression_subscript
       (identifier)
       (number))))
 
@@ -24,7 +24,7 @@ a <= b.5:6
 (source_file
   (assignment
     (identifier)
-    (reference
+    (expression_subscript
       (identifier)
       (range_closed
         (number)
@@ -41,7 +41,7 @@ a <= b.:6
 (source_file
   (assignment
     (identifier)
-    (reference
+    (expression_subscript
       (identifier)
       (range_open_left
         (number)))))
@@ -57,7 +57,7 @@ a <= b.5:
 (source_file
   (assignment
     (identifier)
-    (reference
+    (expression_subscript
       (identifier)
       (range_open_right
         (number)))))

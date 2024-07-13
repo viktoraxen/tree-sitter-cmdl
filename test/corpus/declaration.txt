@@ -20,7 +20,7 @@ signal a: 5
 
 (source_file
   (declaration
-    (declarator_subscript
+    (signal_definition
       (identifier)
       (number))))
 
@@ -49,7 +49,7 @@ signal a: 5, b
 (source_file
   (declaration
     (declaration_left_list
-      (declarator_subscript
+      (signal_definition
         (identifier)
         (number))
       (identifier))))
@@ -65,10 +65,10 @@ signal a: 5, b: 6
 (source_file
   (declaration
     (declaration_left_list
-      (declarator_subscript
+      (signal_definition
         (identifier)
         (number))
-      (declarator_subscript
+      (signal_definition
         (identifier)
         (number)))))
 

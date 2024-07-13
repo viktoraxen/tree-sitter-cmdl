@@ -8,14 +8,20 @@
 "=>"  @operator
 "<="  @operator
 
-"(" @punctuation.bracket
-")" @punctuation.bracket
-"," @punctuation.delimiter
-"." @punctuation.delimiter
-":" @punctuation.delimiter
+"("  @punctuation.bracket
+")"  @punctuation.bracket
+","  @punctuation.delimiter
+"."  @punctuation.delimiter
+":"  @punctuation.delimiter
+"::" @punctuation.delimiter
 
-(number) @number
+(number)     @constant
 (identifier) @variable
+
+(constant             width:  (number) @number)
+(signal_definition    (number) @number)
+(reference            (number) @number)
+(expression_subscript (number) @number)
 
 (expression_component name:   (component_reference (identifier) @type))
 (expression_component inputs: (expression_component_input_list (identifier) @variable))

@@ -1,1 +1,1 @@
-hello
+a <= Xor.Nor(a, b)

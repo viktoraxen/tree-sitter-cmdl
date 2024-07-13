@@ -13,6 +13,34 @@ a <= not b
       (identifier))))
 
 =============
+Constant expression
+=============
+
+a <= 3
+
+---
+
+(source_file
+  (assignment
+    (identifier)
+    (number)))
+
+=============
+Constant expression width
+=============
+
+a <= 3: 4
+
+---
+
+(source_file
+  (assignment
+    (identifier)
+    (constant
+      (number)
+      (number))))
+
+=============
 Binary expression
 =============
 
@@ -117,25 +145,44 @@ a <= Xor(d, g) and b
       (identifier))))
 
 ==============
-Component in expression
+Component reference
 ==============
 
-a <= Xor.Nor(d, g) and b
+a <= Xor::Nor(d, g)
 
 ---
 
 (source_file
   (assignment
     (identifier)
-    (expression_binary
+    (expression_component
+      (component_reference
+        (identifier)
+        (identifier))
+      (expression_component_input_list
+        (identifier)
+        (identifier)))))
+
+==============
+Component subscript input
+==============
+
+a <= Xor::Nor(d.5, g)
+
+---
+
+(source_file
+  (assignment
+    (identifier)
       (expression_component
         (component_reference
           (identifier)
           (identifier))
         (expression_component_input_list
-          (identifier)
-          (identifier)))
-      (identifier))))
+          (expression_subscript
+            (identifier)
+            (number))
+          (identifier)))))
 
 ==============
 Chained unary

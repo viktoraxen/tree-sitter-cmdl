@@ -12,6 +12,70 @@ a <= b
     (identifier)))
 
 ==================
+Subscript assignment
+==================
+
+a.3 <= b
+
+---
+
+(source_file
+  (assignment
+    (reference
+      (identifier)
+      (number))
+    (identifier)))
+
+==================
+Subscript assignment range closed
+==================
+
+a.3:6 <= b
+
+---
+
+(source_file
+  (assignment
+    (reference
+      (identifier)
+      (range_closed
+        (number)
+        (number)))
+    (identifier)))
+
+==================
+Subscript assignment range open right
+==================
+
+a.3: <= b
+
+---
+
+(source_file
+  (assignment
+    (reference
+      (identifier)
+      (range_open_right
+        (number)))
+    (identifier)))
+
+==================
+Subscript assignment range open left
+==================
+
+a.:6 <= b
+
+---
+
+(source_file
+  (assignment
+    (reference
+      (identifier)
+      (range_open_left
+        (number)))
+    (identifier)))
+
+==================
 Multiple output assignment
 ==================
 

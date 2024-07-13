@@ -17,6 +17,28 @@ end
       (identifier))))
 
 =============
+Component signature width
+=============
+
+component Xor(a: 4, b) => x: 3
+end
+
+---
+
+(source_file
+  (component
+    (identifier)
+    (component_inputs
+      (signal_definition
+        (identifier)
+        (number))
+      (identifier))
+    (component_outputs
+      (signal_definition
+        (identifier)
+        (number)))))
+
+=============
 Nestled component
 =============
 
