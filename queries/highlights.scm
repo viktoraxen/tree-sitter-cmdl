@@ -15,19 +15,19 @@
 ":"  @punctuation.delimiter
 "::" @punctuation.delimiter
 
-(number)     @constant
+(number)     @number
 (identifier) @variable
 
-(constant             width:  (number) @number)
-(signal_definition    (number) @number)
-(reference            (number) @number)
-(expression_subscript (number) @number)
+(constant             value: (number) @constant)
 
-(expression_component name:   (component_reference (identifier) @type))
+(expression_component name: (identifier) @type)
+(expression_component name: (component_reference (identifier) @type))
 (expression_component inputs: (expression_component_input_list (identifier) @variable))
 
 (component         (identifier) @type.definition)
 (component_inputs  (identifier) @variable.parameter)
+(component_inputs  (signal_definition (identifier) @variable.parameter))
 (component_outputs (identifier) @variable.parameter)
+(component_outputs (signal_definition (identifier) @variable.parameter))
 
 (comment) @comment
