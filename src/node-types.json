@@ -867,6 +867,14 @@
     }
   },
   {
+    "type": "!",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -899,7 +907,15 @@
     "named": false
   },
   {
+    "type": "^",
+    "named": false
+  },
+  {
     "type": "and",
+    "named": false
+  },
+  {
+    "type": "cat",
     "named": false
   },
   {
@@ -932,6 +948,10 @@
   },
   {
     "type": "signal",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   }
 ]
