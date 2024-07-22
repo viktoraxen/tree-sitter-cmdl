@@ -17,6 +17,24 @@ end
       (identifier))))
 
 =============
+Simple synchronized
+=============
+
+synchronized Xor(a, b) => x
+end
+
+---
+
+(source_file
+  (component
+    (identifier)
+    (component_inputs
+      (identifier)
+      (identifier))
+    (component_outputs
+      (identifier))))
+
+=============
 Component signature width
 =============
 

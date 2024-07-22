@@ -28,7 +28,7 @@ module.exports = grammar({
      */
 
     component: $ => seq(
-      'component',
+      choice('component', 'synchronized'),
       field('name', $.identifier),
       '(', field('inputs', $.component_inputs), ')',
       '=>', field('outputs', $.component_outputs),

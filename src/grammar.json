@@ -88,8 +88,17 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "component"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "component"
+            },
+            {
+              "type": "STRING",
+              "value": "synchronized"
+            }
+          ]
         },
         {
           "type": "FIELD",
