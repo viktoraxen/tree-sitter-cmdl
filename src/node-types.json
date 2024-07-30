@@ -871,6 +871,14 @@
     "named": false
   },
   {
+    "type": "!&",
+    "named": false
+  },
+  {
+    "type": "!|",
+    "named": false
+  },
+  {
     "type": "&",
     "named": false
   },
@@ -880,6 +888,10 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": "+",
     "named": false
   },
   {
@@ -900,6 +912,10 @@
   },
   {
     "type": "<=",
+    "named": false
+  },
+  {
+    "type": "=",
     "named": false
   },
   {
@@ -931,8 +947,20 @@
     "named": false
   },
   {
+    "type": "eq",
+    "named": false
+  },
+  {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "nand",
+    "named": false
+  },
+  {
+    "type": "nor",
+    "named": false
   },
   {
     "type": "not",
@@ -955,7 +983,19 @@
     "named": false
   },
   {
+    "type": "xnor",
+    "named": false
+  },
+  {
+    "type": "xor",
+    "named": false
+  },
+  {
     "type": "|",
+    "named": false
+  },
+  {
+    "type": "~",
     "named": false
   }
 ]

@@ -818,7 +818,7 @@
                     },
                     {
                       "type": "STRING",
-                      "value": "^"
+                      "value": "+"
                     }
                   ]
                 }
@@ -826,6 +826,74 @@
               {
                 "type": "PREC",
                 "value": 1,
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "xnor"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "~"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "PREC",
+                "value": 2,
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "xor"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "^"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "PREC",
+                "value": 3,
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "nand"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "!&"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "PREC",
+                "value": 4,
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "nor"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "!|"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "PREC",
+                "value": 5,
                 "content": {
                   "type": "CHOICE",
                   "members": [
@@ -842,7 +910,7 @@
               },
               {
                 "type": "PREC",
-                "value": 2,
+                "value": 6,
                 "content": {
                   "type": "CHOICE",
                   "members": [
@@ -853,6 +921,23 @@
                     {
                       "type": "STRING",
                       "value": "|"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "PREC",
+                "value": 7,
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "eq"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "="
                     }
                   ]
                 }

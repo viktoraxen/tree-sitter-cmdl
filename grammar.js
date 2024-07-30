@@ -148,9 +148,14 @@ module.exports = grammar({
     expression_binary: $ => prec.left(seq(
       field('left', $._expression),
       choice(
-        prec(0, choice('cat', '^')),
-        prec(1, choice('and', '&')),
-        prec(2, choice('or', '|'))),
+        prec(0, choice('cat', '+')),
+        prec(1, choice('xnor', '~')),
+        prec(2, choice('xor', '^')),
+        prec(3, choice('nand', '!&')),
+        prec(4, choice('nor', '!|')),
+        prec(5, choice('and', '&')),
+        prec(6, choice('or', '|')),
+        prec(7, choice('eq', '='))),
       field('right', $._expression))),
 
     /*
